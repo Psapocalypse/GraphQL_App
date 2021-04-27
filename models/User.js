@@ -4,9 +4,7 @@ const userSchema = new Schema({
     username: String,
     password: String,
     email: String,
-},
-{
-    timestamps: { createdAt: 'created_at' }
+    createdAt: String
 });
 
 module.exports = model('User', userSchema);
