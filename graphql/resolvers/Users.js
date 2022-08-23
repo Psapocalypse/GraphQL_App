@@ -8,7 +8,9 @@ const User = require('../../models/User');
 module.exports = {
     Mutation: {
         async register(
+            // parent field
             _,
+            //args
             {
                 registerInput: { username, email, password, confirmPassword }
             },
