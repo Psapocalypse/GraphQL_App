@@ -31,6 +31,10 @@ module.exports = {
         async createPost(_, { body }, context) {
             const user = checkAuth(context);
 
+            if(args.body.trim() === ''){
+                throw new Error('Post body must not be empty');
+            }
+
             const newpost = new Post({
                 body,
                 user: user.id,
@@ -39,6 +43,10 @@ module.exports = {
             });
 
             const post = await newpost.save();
+
+            context.pubsub.publish('NEW_POST', {
+                newPost: post
+            })
             
             return post;
 
@@ -59,6 +67,11 @@ module.exports = {
             } catch(err) {
                 throw new Error(err);
             }
+        }
+    },
+    Subscription: {
+        newPost: {
+            subscribe: (_, __, { pubsub }) => pubsub.asyncIterator('NEW_POST')
         }
     }
 }

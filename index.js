@@ -1,5 +1,5 @@
 //Dependencies
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer, PubSub } = require('apollo-server');
 const gql = require('graphql-tag');
 const mongoose = require('mongoose');
 
@@ -12,10 +12,12 @@ const User = require('./models/User');
 
 require('dotenv').config();
 
+const pubsub = new PubSub();
+
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }) => ({ req })
+    context: ({ req }) => ({ req, pubsub })
 });
 
 mongoose.connect(process.env.MONGO_URI, { useUnifiedTopology: true ,useNewUrlParser: true })
