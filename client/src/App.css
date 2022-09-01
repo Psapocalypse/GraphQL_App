@@ -1,0 +1,41 @@
+.menu-bar .active {
+    text-decoration: underline;
+    color: #009999;
+}
+
+.home .profile-card {
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.home .like-button {
+    width: 60%;
+    padding: 15px;
+    background-color: #FF66FF;
+    color: white;
+    transition: ease all 0.3s;
+    border-color: #FF66FF;
+    float: right;
+}
+
+.home .like-button:hover {
+    background-color: white;
+    color: #FF66FF;
+    transition: ease all 0.3s;
+}
+
+.home .comment-button {
+    width: 60%;
+    padding: 15px;
+    background-color: blue;
+    color: white;
+    transition: ease all 0.3s;
+    border-color: blue;
+    float: right;
+}
+
+.home .comment-button:hover {
+    background-color: white;
+    color: blue;
+    transition: ease all 0.3s;
+}

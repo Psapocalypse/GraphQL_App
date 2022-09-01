@@ -13,9 +13,9 @@ function App() {
     <Router>
       <MenuBar />
       <Routes>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={Register} />
+        <Route exact path='/' element={<Home />} />
+        <Route exact path='/login' element={<Login />} />
+        <Route exact path='/register' element={<Register />} />
       </Routes>
     </Router>
   )

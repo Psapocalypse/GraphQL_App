@@ -1,34 +1,36 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import React, { useState } from 'react';
+import {
+  Container,
+  Nav,
+  Navbar
+} from 'react-bootstrap';
 
-function LinkTab(props) {
+function MenuBar() {
+  const [active, setActive] = useState(window.location.href.split("http://localhost:3000")[1]);
+  
+  const showActive = () => {
+    return(
+      <Navbar bg="light" expand="lg">
+        <Container>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/" className={active === "/" ? "active" : null}>Home</Nav.Link>
+              <Nav.Link href="/register" className={active === "/register" ? "active" : null} style={{position: 'absolute', right: '60px'}}>Register</Nav.Link>
+              <Nav.Link href="/login" className={active === "/login" ? "active" : null} style={{position: 'absolute', right: '10px'}}>Login</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    )
+
+  }
+
   return (
-    <Tab
-      component="a"
-      onClick={(event) => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
+    <div className="menu-bar">
+      {showActive()}
+    </div>
   );
 }
 
-export default function MenuBar() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  return (
-    <Box sx={{ width: '100%' }}>
-      <Tabs value={value} onChange={handleChange} aria-label="nav tabs example">
-        <LinkTab label="Home" href="/home" />
-        <LinkTab label="Login" href="/login" />
-        <LinkTab label="Register" href="/register" />
-      </Tabs>
-    </Box>
-  );
-}
+export default MenuBar;
